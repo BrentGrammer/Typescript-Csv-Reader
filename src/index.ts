@@ -12,8 +12,6 @@ const matchReader = new MatchReader(csvFileReader);
 matchReader.load();
 
 let manUnitedWins = 0;
-
-let manUnitedWins = 0;
 // loop through row arrays and grab index of home and away teams to match a team where Home and Away wins correspond with the team
 for (let match of matchReader.matches) {
   if (match[1] === 'Man United' && match[5] === MatchResult.HomeWin) {
