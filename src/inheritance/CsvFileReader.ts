@@ -1,10 +1,13 @@
 import fs from 'fs';
 
-// this produces a 2-D array - each row will be an array of the words inside an outer array
-export class CsvFileReader {
-  data: string[][] = [];
+// Generics are used here (pass in the type in <>) to allow for different formats and types in the csv rows
+// to make the class more reusable
+export abstract class CsvFileReader<T> {
+  data: T[] = [];
 
   constructor(public filename: string) {}
+
+  abstract mapRow(row: string[]): T;
 
   read(): void {
     this.data = fs
@@ -14,6 +17,7 @@ export class CsvFileReader {
         encoding: 'utf-8'
       })
       .split('\n')
-      .map((row: string): string[] => row.split(','));
+      .map((row: string): string[] => row.split(','))
+      .map(this.mapRow);
   }
 }
