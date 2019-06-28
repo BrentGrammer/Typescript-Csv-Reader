@@ -1,4 +1,4 @@
-import { CsvFileReader } from './CsvFileReader';
+import { MatchReader } from './MatchReader';
 import { MatchResult } from './MatchResult';
 
 /**
@@ -6,7 +6,7 @@ import { MatchResult } from './MatchResult';
  * You can move things to separate files and export them there.
  */
 
-const reader = new CsvFileReader('football.csv');
+const reader = new MatchReader('football.csv');
 
 reader.read();
 

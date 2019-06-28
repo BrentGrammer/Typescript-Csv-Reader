@@ -1,17 +1,13 @@
 import fs from 'fs';
-import { MatchResult } from './MatchResult';
-
-// these are the types of data in order in a csv row:
-type TypeOfData = [Date, string, string, number, number, MatchResult, string];
 
 // Generics are used here (pass in the type in <>) to allow for different formats and types in the csv rows
 // to make the class more reusable
-export abstract class CsvFileReader<TypeOfData> {
-  data: TypeOfData[] = [];
+export abstract class CsvFileReader<T> {
+  data: T[] = [];
 
   constructor(public filename: string) {}
 
-  abstract mapRow(row: string[]): TypeOfData;
+  abstract mapRow(row: string[]): T;
 
   read(): void {
     this.data = fs
